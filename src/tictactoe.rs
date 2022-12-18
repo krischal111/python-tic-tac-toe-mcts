@@ -58,7 +58,7 @@ impl tttS {
 
     fn is_full(&self) -> bool {
         let mut st = self.tictactoe_state;
-        for i in 0..9 {
+        for _i in 0..9 {
             if (st & 3) == 0 {
                 return false;
             } else {
@@ -138,7 +138,10 @@ impl tttS {
                 let (wins, ties, loss) = new_board.monte_carlo(player, n);
                 record[i] = (wins, ties, loss);
 
-                println!("For choice {i}, win:tie:loss ratio is: {:?}", (wins, ties, loss));
+                println!(
+                    "For choice {i}, win:tie:loss ratio is: {:?}",
+                    (wins, ties, loss)
+                );
             } else {
                 continue;
             }
@@ -180,17 +183,17 @@ impl tttS {
 
     fn play_game_with_hints(&mut self) {
         let mut player = 1;
-        for i in 0..9 {
+        for _i in 0..9 {
             player = 3 - player;
-            self.monte_start(player, 10000);
+            self.monte_start(player, 5000);
             self.show_state();
-            let n : usize = loop {
-            println!("Your choice = ");
+            let n: usize = loop {
+                println!("Your choice = ");
                 let mut n = String::new();
                 use std::io;
                 io::stdin()
-                .read_line(&mut n)
-                .expect("failed to read input.");
+                    .read_line(&mut n)
+                    .expect("failed to read input.");
                 break n.trim().parse().expect("invalid input");
             };
             self.set_pos(n as usize, player);
@@ -202,7 +205,6 @@ impl tttS {
                 println!("The game is a tie");
                 break;
             }
-
         }
         self.show_state();
     }
