@@ -27,6 +27,7 @@ $ `sudo pacman -S python3`
 
 #### In windows 
 You need to have app installer pre installed from ms-store
+
 \\> `winget install python3`
 
 #### To run the program
